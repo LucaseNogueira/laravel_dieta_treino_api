@@ -1,0 +1,45 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Minha APP",
+        "description": "API de dieta e treino desenvolvida em Laravel 12",
+        "version": "0.0.1"
+    },
+    "servers": [
+        {
+            "url": "http://localhost",
+            "description": "Servidor principal"
+        }
+    ],
+    "paths": {
+        "/": {
+            "get": {
+                "tags": [
+                    "Root"
+                ],
+                "summary": "Endpoint raiz da API",
+                "description": "Retorna uma mensagem de teste 'Hello World'. Útil para verificar se a API está no ar.",
+                "operationId": "d2f724c57f40ef229bad56a9f1d6ba6d",
+                "responses": {
+                    "200": {
+                        "description": "Requisição executada com sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "string"
+                                },
+                                "example": "Hello World"
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Root",
+            "description": "Root"
+        }
+    ]
+}

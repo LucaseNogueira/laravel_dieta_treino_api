@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            context: .
+            dockerfile: Dockerfile
+        container_name: laravel_dieta_treino_api
+        volumes:
+            - .:/var/www/html
+        ports:
+            - "8001:8000"
+        depends_on:
+            - db
+
+    db:
+        image: postgres:16
+        container_name: laravel_dieta_treino_postgres
+        restart: always
+        environment:
+            POSTGRES_USER: dieta_treino_api
+            POSTGRES_PASSWORD: dieta_treino_api
+            POSTGRES_DB: dieta_treino_db
+        ports:
+            - "5433:5432"
+        volumes:
+            - pgdata:/var/lib/postgresql/data
+
+volumes:
+    pgdata:
