@@ -10,6 +10,7 @@ Uma API de dieta e treino que nada convencional. Nela você informar os alimento
 - [Requisitos e regras de negócio](docs/requisitos-regras_de_negocio.md)
 - [Iniciando o projeto (Legado)](docs/iniciando-o-projeto_legado.md)
 - [Iniciando projeto com Docker](docs/iniciando-projeto-com-docker.md)
+- [Primeiros passos Git e Github](docs/primeiros-passos-git-github.md)
 - [Features (documentação)]()
 - [Diagramas e Fluxogramas](docs/diagramas)
 
@@ -29,8 +30,8 @@ As features e os commits devem possuir o prefixo de uma das seguintes categorias
 - ``feat:``: Desenvolvimento de uma feature;
 - ``test:``: Teste da aplicação;
 - ``docs:``: Documentação;
-- ``chore:``: Adição de biblioteca ou desenvolvimento de um núcleo da aplicação;
-- ``fix:`` Correção de algum bug;
+- ``chore:``: Adição de biblioteca ou desenvolvimento no núcleo da aplicação;
+- ``fix:`` Correção de bugs;
 
 Exemplo de nomenclatura de uma feature ou commit: ``chore: Inicio do projeto``.
 

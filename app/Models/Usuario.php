@@ -13,8 +13,6 @@ class Usuario extends Authenticatable implements MustVerifyEmail
 
     use HasFactory, Notifiable;
 
-    protected $table = 'usuario';
-
     protected $fillable = [
         'nome',
         'email',
