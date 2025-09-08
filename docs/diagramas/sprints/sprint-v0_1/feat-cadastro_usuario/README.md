@@ -1,0 +1,44 @@
+# Introdução
+
+Desenvolver modelo do usuário e as rotas de cadastro e autenticação do usuário na API. Esta feature deve atender todos os requisitos associados ao usuário, com excessão da exclusão do mesmo em nosso sistema.
+
+# Pré Requisitos
+
+Nenhum pré requisito aparente.
+
+# Objetivos
+
+- [ ] Desenvolver modelo de Usuário;
+- [ ] Atualizar modelagem do banco de dados com as tabelas desenvolvidas nesta feature;
+- [ ] Desenvolver/atualizar Plano de Teste;
+- [ ] Desenvolver diagrama de sequência para todas as rotas desenvolvidas;
+- [ ] Desenvolver método ``POST`` da rota ``api/user``;
+- [ ] Desenvolver método ``POST`` da rota ``api/auth``;
+- [ ] Desenvolver método ``GET`` da rota ``user/confirm/{hash}``;
+- [ ] Desenvolver método ``PUT`` da rota ``api/user``;
+- [ ] Marcar requisitos atendidos no documento de requisitos;
+
+# Requisitos e Regras de negócio Atendidas
+
+### Requisitos Funcionais
+
+- [ ] **RF001 - Manter usuários:** O sistema deve manter usuários.
+- [ ] **RF002 - Geração de Token de Autenticação:** O sistema deve gerar um token de autenticação para cada usuário logado.
+- [ ] **RF003 - Login do Usuário:** O sistema deve permitir o login do usuário no sistema.
+  
+### Requisitos Não Funcionais
+
+- [ ] **RNF003 - Criptografia das Senhas:** Todas as senhas devem ser armazenadas utilizando bcrypt ou algoritmo de hashing equivalente, nunca em texto plano.
+
+### Regras de Negócio
+
+- [ ] **RN001 - Dados do Usuário:** Cada usuário deve possuir id único e obrigatório, nome obrigatório, senha obrigatória e protegida, e-mail obrigatório e status obrigatório.
+- [ ] **RN002 - Tipo de Token:** O token de autenticação do usuário deve ser do tipo JWT (JSON Web Token).
+- [ ] **RN003 - Validade do Token:** O token de autenticação terá validade de 1 dia, 24 horas, a partir da data/hora de emissão.
+- [ ] **RN004 - Expiração do token:** Caso o token expire, usuário autenticado por mais de 1 dia, o sistema deve exigir um novo login para gerar um novo token de autenticação.
+- [ ] **RN005 - Geração do token:** Um novo token é gerado quando o usuário loga no sistema.
+- [ ] **RN006 - Acesso do usuário:** O usuário terá acesso ao sistema caso realizado o login e caso o status de sua conta seja igual a "ativo", assim ele receberá um token de autenticação válido para as ações do usuário no sistema.
+- [ ] **RN007 - Cadastro do usuário:** O usuário deve se cadastrar no sistema com seus dados validados.
+- [ ] **RN008 - Conta pendente após o cadastro:** Após o cadastro de sua conta, o status da conta do usuário fica pendente até o mesmo confirmar o seu cadastro pelo email de confirmação.
+- [ ] **RN009 - Email de confirmação:** Após o cadastro no sistema o usuário irá receber um email de confirmação de acesso ao sistema, para assim ativar a sua conta.
+- [ ] **RN010 - Manutenção dos dados do usuário:** Apenas após logado no sistema o usuário pode atualizar o seu nome e senha.

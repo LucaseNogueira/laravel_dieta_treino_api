@@ -1,0 +1,22 @@
+@startuml
+actor Cliente
+
+Cliente -> api.php : POST /api/user
+api.php -> StoreUsuarioRequest : Validar dados
+StoreUsuarioRequest --> api.php : Dados validados ou erro 422
+
+alt Dados válidos
+    api.php -> UsuarioController : store(request)
+    UsuarioController -> UsuarioService : criarUsuario(dados)
+    UsuarioService -> Usuario : save()
+    Usuario -> PostgreSQL : INSERT INTO usuarios
+    PostgreSQL --> Usuario : Sucesso
+    Usuario --> UsuarioService : Usuario criado
+    UsuarioService ->> ConfirmarEmailJob : Enviar Email Confirmacao
+    UsuarioService --> UsuarioController : Usuario criado
+    UsuarioController --> Cliente : 201 Created + JSON
+    ConfirmarEmailJob -->> Cliente : Email enviado
+else Dados inválidos
+    StoreUsuarioRequest --> Cliente : 422 Unprocessable Entity + Erros
+end
+@enduml

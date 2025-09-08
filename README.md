@@ -14,6 +14,20 @@ Uma API de dieta e treino que nada convencional. Nela você informar os alimento
 - [Features (documentação)]()
 - [Diagramas e Fluxogramas](docs/diagramas)
 
+# Paradigmas
+
+O Desenvolvimento guiado por testes, ou simplesmente **TDD**, é a técnica de desenvolvimento de software escolhida no desenvolvimento desta API. Desta forma, além do desenvolvimento do código fonte, o desenvolvimento e manutenção de testes e sua documentação também foi tomado como prioridade de cada sprint.
+
+Além disso o paradigma de **Orientação a Objeto** foi respeitado no desenvolvimento da aplicação, procurando sempre manter um **código limpo**, o mais próximo possível dos principios **SOLID**.
+
+# Dependencias e demais ferramentas
+
+Este projeto foi desenvolvido em **Laravel 12** e **PostgreSQL 16**. É possível acompanhar todas as dependências deste projeto nos arquivos ``composer.json`` e ``package.json``.
+
+As ferramentas utilizadas para modelagem **UML** foram [draw.io](https://app.diagrams.net/) e [PlantUML](https://www.plantuml.com/).
+
+**PHPUnit** e **Postman** foram a ferramenta e o frameworks escolhidos para o desenvolvimento e aplicação dos testes.
+
 # Workflow, Sprint, Features e Commits
 
 O fluxo de desenvolvimento deste projeto foi inspirado no Gitlab workflow, porém este modelo não foi aplicado "à risca" neste projeto, apenas alguns conceitos foram levados em consideração.
