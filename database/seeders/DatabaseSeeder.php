@@ -16,8 +16,14 @@ class DatabaseSeeder extends Seeder
     {
         Usuario::factory()->create([
             'nome' => 'Teste',
-            'email' => 'teste@example.com',
+            'email' => 'teste@ativo.com',
             'status' => UsuarioStatus::ATIVO
+        ]);
+        Usuario::factory()->create([
+            'nome' => 'Teste Pendente',
+            'email' => 'teste@pendente.com',
+            'status' => UsuarioStatus::PENDENTE,
+            'email_verificado' => null
         ]);
     }
 }

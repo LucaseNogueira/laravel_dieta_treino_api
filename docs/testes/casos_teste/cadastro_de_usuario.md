@@ -19,11 +19,11 @@
 
 | ID | Caso de Teste | Pré-condição | Passos | Resultado Esperado |
 | -- | ------------- | ------------ | ------ | ------------------ |
-| **CT-U001** | Cadastro de Usuário | Nenhuma | Preencher todos os campos corretamente e enviar | Resposta status **200** com o dados do usuário criado (com excessão da senha), **token JWT** e status do usuário igual a **"Pendente"** |
-| **CT-U002** | Cadastro com e-mail duplicado | E-mail já cadastrado | Preencher campos com e-mail existente | Resposta **409** com mensagem *"Credenciais invalidas: o e-mail informado já possui cadastro no sistema"* |
-| **CT-U003** | Cadastro com nome inválido | Nenhuma | Não informar ou informar nome com mais de 60 caracteres | Resposta **400** com mensagem apropriada para cada situação |
-| **CT-U004** | Cadastro com email inválido | Nenhuma | Não informar ou informar email inválido | Resposta **400** com mensagem apropriada para cada situação |
-| **CT-U005** | Cadastro sem informar senha | Nenhuma | Enviar o cadastro sem informar a senha | Resposta **400** com a mensagem "Senha não informada" |
+| **CT-U001** | Cadastro do Usuário | Nenhuma | Preencher todos os campos corretamente e enviar | Resposta status **201** com o dados do usuário criado (com excessão da senha), status do usuário igual a **"Pendente"** |
+| **CT-U002** | Cadastro com e-mail duplicado | E-mail já cadastrado | Preencher campos com e-mail existente | Resposta **422** com mensagem *"Credenciais invalidas: o e-mail informado já possui cadastro no sistema"* |
+| **CT-U003** | Cadastro com nome inválido | Nenhuma | Não informar ou informar nome com mais de 60 caracteres | Resposta **422** com mensagem apropriada para cada situação |
+| **CT-U004** | Cadastro com email inválido | Nenhuma | Não informar ou informar email inválido | Resposta **422** com mensagem apropriada para cada situação |
+| **CT-U005** | Cadastro sem informar senha | Nenhuma | Enviar o cadastro sem informar a senha | Resposta **422** com a mensagem "Senha não informada" |
 | **CT-U006** | Criptografia do campo senha no cadastro do usuário | Nenhuma | Cadastro valido de um usuário | Senha criptografada (bcrypt) |
 | **CT-U007** | Envio do e-mail de confirmação | Usuário cadastrado | Nenhum | Realizar a ação de emitir o e-mail de confirmação |
 

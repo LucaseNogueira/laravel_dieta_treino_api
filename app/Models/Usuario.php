@@ -7,6 +7,8 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use PhpParser\Node\Expr\BinaryOp\BooleanOr;
 
 class Usuario extends Authenticatable implements MustVerifyEmail
 {
@@ -21,7 +23,9 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     ];
 
     protected $hidden = [
-        'senha'
+        'senha',
+        'updated_at',
+        'created_at'
     ];
 
     protected $casts = [
@@ -51,5 +55,18 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     public function getEmailForVerification()
     {
         return $this->email;
+    }
+
+    /**
+     * Compara a secret informada com a senha hasheada do usuário
+     */
+    public function comparaSenhas(string $secret):bool
+    {
+        return Hash::check($secret, $this->senha);
+    }
+
+    public function setSenhaAttribute(string $senha):void
+    {
+        $this->attributes['senha'] = Hash::make($senha);
     }
 }
