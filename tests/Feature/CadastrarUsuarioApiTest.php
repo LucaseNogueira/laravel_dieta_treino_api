@@ -2,17 +2,26 @@
 
 namespace Tests\Feature;
 
-use App\Enums\UsuarioStatus;
 use App\Http\Services\UsuarioService;
+use App\Jobs\ConfirmarEmailJob;
+use App\Mail\ConfirmarCadastroMail;
+use App\Models\Usuario;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Queue;
 use Tests\TestCase;
 
-class UsuarioApiTest extends TestCase
+class CadastrarUsuarioApiTest extends TestCase
 {
     use DatabaseTransactions;
 
+    /**
+     * Testa a criação do usuário e o envio de email pela rota de cadastro de usuário.
+     */
     public function test_case_cadastro_do_usuario(): void
     {
+        Queue::fake();
+
         $payload = [
             'nome' => 'João Testcase',
             'email' => 'joao_testcase@meuemail.com',
@@ -27,6 +36,10 @@ class UsuarioApiTest extends TestCase
             'email' => 'joao_testcase@meuemail.com',
             'status' => 'Pendente',
         ]);
+
+        Queue::assertPushed(ConfirmarEmailJob::class, function($job) use ($payload){
+            return $job->usuario->email === $payload['email'];
+        });
     }
 
     public function test_case_cadastro_com_email_duplicado():void
@@ -158,5 +171,19 @@ class UsuarioApiTest extends TestCase
 
         $this->assertTrue($usuario->comparaSenhas('testcase_joao'));
         $this->assertFalse($usuario->comparaSenhas('Testcase_joao'));
+    }
+
+    public function test_case_job_email_confirmacao_usuario():void
+    {
+        Mail::fake();
+
+        $usuario = Usuario::factory()->make();
+
+        $job = new ConfirmarEmailJob($usuario);
+        $job->handle();
+
+        Mail::assertSent(ConfirmarCadastroMail::class, function ($mail) use ($usuario) {
+            return $mail->hasTo($usuario->email);
+        });
     }
 }
