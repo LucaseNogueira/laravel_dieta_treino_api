@@ -11,6 +11,7 @@ Uma API de dieta e treino que nada convencional. Nela você informar os alimento
 - [Iniciando o projeto (Legado)](docs/iniciando-o-projeto_legado.md)
 - [Iniciando projeto com Docker](docs/iniciando-projeto-com-docker.md)
 - [Primeiros passos Git e Github](docs/primeiros-passos-git-github.md)
+- [Primeiros passos do PHPUnit no Laravel e Docker](docs/primeiros-passos-phpunit.md)
 - [Features (documentação)]()
 - [Diagramas e Fluxogramas](docs/diagramas)
 
