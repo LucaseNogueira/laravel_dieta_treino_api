@@ -1,6 +1,6 @@
 # Introdução
 
-Este projeto optou pelo PHPUnit na construção dos seus testes. Para utilizar o PHPUnit em projetos Laravel + Docker é recomendado realizar algumas configurações, que podem mudar de caso a caso. Neste documento irei relatar o passo a passo de como foi configurar o PHPUnit neste projeto.
+Este projeto optou pelo PHPUnit na construção dos seus testes. Para utilizar o PHPUnit em projetos Laravel + Docker é recomendado realizar algumas configurações, que podem mudar de caso a caso. Neste documento irei relatar o passo a passo de como foi configurado o PHPUnit neste projeto.
 
 # Configure o seu ``phpunit.xml``
 
@@ -21,13 +21,14 @@ O arquivo ``phpunit.xml`` define as configurações básicas do PHPUnit na sua a
 ```
 
 Alguns atributos são mais intuitivos mas vale dar atenção aos seguintes atributos:
+
 - ``DB_HOST``: Neste caso o nosso host será o serviço no docker, ou seja, o nosso serviço PostgreSQL **db**;
 - ``DB_PORT``: Como a nossa aplicação irá rodar no docker, a porta do banco é a **5432**, porta interna no container docker;
-- ``DB_DATABASE``: Vamos apontar para um banco de dados próprio para testes, onde vamos chama-lo de **dieta_treino_db_test**;
+- ``DB_DATABASE``: Vamos apontar para um banco de dados próprio para testes, onde vamos chamá-lo de **dieta_treino_db_test**;
 
 # Arquivo ``.env.testing``
 
-Precisamos de um ``.env`` expecifico para testes. Você pode copiar o conteúdo do seu arquivo ``.env``, também pode ser o conteúdo do arquivo ``.env.example``, e altere/adicione as seguintes variaveis:
+Precisamos de um ``.env`` expecífico para testes. Você pode copiar o conteúdo do seu arquivo ``.env``, também pode ser o conteúdo do arquivo ``.env.example``, e altere/adicione as seguintes variáveis:
 
 ```
 ...
@@ -61,7 +62,7 @@ db:
 
 # Linhas de comando
 
-Agora vamos atualizar o nosso container. É importante lembrar que o **desenvolvimento a seguir possívelmente irá apagar o conteúdo presente no banco de dados do container. Se achar necessário faça um backup.**
+Agora vamos atualizar o nosso container. É importante lembrar que o **desenvolvimento a seguir possivelmente irá apagar o conteúdo presente no banco de dados do container. Se achar necessário faça um backup.**
 
 Primeiramente vamos garantir que as configurações e cache do projeto Laravel estão limpos. Recomendo rodar os dois comandos separadamente pois pode ocorrer um erro ao executar o segundo comando, responsável por limpar o cache. Isso pode acontecer por que, no momento, não existe uma tabela de cache no banco de dados, com isso o Laravel tenta encontrar esta tabela, não acha, e gera o erro. Porém esse erro não prejudica o nosso desenvolvimento.
 
@@ -90,15 +91,15 @@ dieta_treino_db
 dieta_treino_db_test
 ```
 
-Ou uma tabela contendo alguns dados do(s) serviço(s) de banco de dados. Neste tabela deve conter pelo menos um **dieta_treino_db** e pelo menos um **dieta_treino_db_test**.
+Ou uma tabela contendo alguns dados do(s) serviço(s) de banco de dados. Nesta tabela deve conter pelo menos um **dieta_treino_db** e pelo menos um **dieta_treino_db_test**.
 
-Com um banco de dados apropriado para os nossos testes nós podemos popular este banco utilizando as nossas migrations. Em outro prompt de comando, ou terminal, execute ``docker exec -it laravel_dieta_treino_api bash`` para entrar no terminal do projeto no docker/container. Acessando este terminal você pode executar códigos nele, como por exemplo os ``php artisan``.
+Com um banco de dados apropriado para os nossos testes nós podemos popularizar este banco utilizando as nossas migrations. Em outro prompt de comando, ou terminal, execute ``docker exec -it laravel_dieta_treino_api bash`` para entrar no terminal do projeto no docker/container. Acessando este terminal você pode executar códigos nele, como por exemplo os ``php artisan``.
 
 ```
 php artisan migrate --env=testing
 ```
 
-Assim o banco de dados de teste será populado e você pode executar os seus testes sem preocupações.
+Assim o banco de dados de teste será populado e você poderá executar os seus testes sem preocupações.
 
 ```
 php artisan test
@@ -106,11 +107,11 @@ php artisan test
 
 # Observações finais
 
-Com o PHPunit nós podemos criar alguns testes que envolvem integrar com outras camadas do nosso sistema ou até mesmo com outros sistemas. Num teste não necessáriamente nós queremos criar um novo registro ou enviar um email, o que nós queremos é testar o comportamento do sistema ao realizar essas ações. Pensendo nisso eu separei esta etapa para apresentar uma breve introdução a alguns recursos do PHPUnit + Laravel que nos permitem testar estes comportamentos sem implicar na criação de novos registros.
+Com o PHPunit nós podemos criar alguns testes que envolvem integrar com outras camadas do nosso sistema ou até mesmo com outros sistemas. Num teste não necessariamente nós queremos criar um novo registro ou enviar um email, o que nós queremos é testar o comportamento do sistema ao realizar essas ações. Pensando nisso, eu separei esta etapa para apresentar uma breve introdução a alguns recursos do PHPUnit + Laravel que nos permitem testar estes comportamentos sem implicar na criação de novos registros.
 
-O primeiro é o que fizemos anteriormente, **criar um banco de dados apenas para os testes do PHPUnit**. Mesmo em ambiente de desenvolvimento é bom ter um banco de dados para seus testes na aplicação, principalmente os que envolvem o PHPUnit. Outra dica é, sempre que você observar que precisa trabalhar num cenário/ambiente diferente da aplicação, cogite criar um banco de dados para este ambiente especifico.
+O primeiro é o que fizemos anteriormente, **criar um banco de dados apenas para os testes do PHPUnit**. Mesmo em ambiente de desenvolvimento é bom ter um banco de dados para seus testes na aplicação, principalmente os que envolvem o PHPUnit. Outra dica é, sempre que você observar que precisa trabalhar num cenário/ambiente diferente da aplicação, cogite criar um banco de dados para este ambiente específico.
 
-Quando criado uma classe de teste unitário ou de integração é preciso ter atenção com o que você quer com este teste. Você quer criar um novo registro? Você quer **manter este novo registro no banco de dados?** Você quer que o teste dispare o email para o cliente toda vez que ele for executado? Ter esta questão é muito importante, afinal este classe pode ser executada infinitas vezes ao longo do tempo. Aqui vai algumas dicas para ajuda-lo com essas questões:
+Quando criado uma classe de teste unitário ou de integração é preciso ter atenção com o que você quer com este teste. Você quer criar um novo registro? Você quer **manter este novo registro no banco de dados?** Você quer que o teste dispare o email para o cliente toda vez que ele for executado? Ter esta questão é muito importante, afinal esta classe pode ser executada infinitas vezes ao longo do tempo. Aqui vai algumas dicas para ajudá-lo com essas questões:
 
 - Utilize a trait **RefreshDatabase** ou **DatabaseTransactions** quando não querer afetar o banco de dados;
 - Use ``Queue::fake()`` quando trabalhar com testes de filas e, em muitos casos, jobs;
