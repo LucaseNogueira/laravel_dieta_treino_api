@@ -41,6 +41,17 @@ class UsuarioController extends Controller
     }
 
     public function confirm(string $hash){
+        $isConfirm = $this->getInstanceService()->confirmarUsuario($hash);
+        if($isConfirm){
+            return response()->json(
+                'Confirmado o cadastro do seu usuário. Agora você pode acessar a API!',
+                200
+            );
+        }
 
+        return response()->json(
+            'Credenciais inválidas',
+            404
+        );
     }
 }

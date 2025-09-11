@@ -6,6 +6,10 @@ use Illuminate\Http\Request;
 
 class HelloWorldController extends Controller
 {
+    public function getInstanceService(){
+        return null;
+    }
+
     /**
      * @OA\Get(
      *     path="/",

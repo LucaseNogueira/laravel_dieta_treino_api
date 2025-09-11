@@ -9,16 +9,15 @@ class ConfirmarEmailHelper{
 
     public static function hash(Usuario $usuario):string
     {
-        $chave = self::getChave($usuario);
-
-        return Hash::make($chave);
+        return hash_hmac('sha256', self::getChave($usuario), config('app.key'));
     }
 
     public static function checkHash(string $hashedStr, Usuario $usuario):bool
     {
-        $chave = self::getChave($usuario);
-
-        return Hash::check($chave, $hashedStr);
+        return hash_equals(
+            $hashedStr,
+            self::hash($usuario)
+        );
     }
 
     private static function getChave(Usuario $usuario):string
