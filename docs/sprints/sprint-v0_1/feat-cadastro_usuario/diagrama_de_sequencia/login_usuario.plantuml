@@ -1,0 +1,7 @@
+@startuml Login do Usuario
+actor Cliente
+
+Cliente -> api.php : POST /api/auth
+api.php -> LoginAuthRequest : Validar dados
+
+@enduml

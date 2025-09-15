@@ -1,4 +1,4 @@
-@startuml
+@startuml Cadastrar Usuario
 actor Cliente
 
 Cliente -> api.php : POST /api/user

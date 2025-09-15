@@ -8,13 +8,13 @@ Nenhum pré requisito aparente.
 
 # Objetivos
 
-- [ ] Desenvolver modelo de Usuário;
+- [X] Desenvolver modelo de Usuário;
 - [ ] Atualizar modelagem do banco de dados com as tabelas desenvolvidas nesta feature;
 - [ ] Desenvolver/atualizar Plano de Teste;
 - [ ] Desenvolver diagrama de sequência para todas as rotas desenvolvidas;
-- [ ] Desenvolver método ``POST`` da rota ``api/user``;
+- [X] Desenvolver método ``POST`` da rota ``api/user``;
 - [ ] Desenvolver método ``POST`` da rota ``api/auth``;
-- [ ] Desenvolver método ``GET`` da rota ``user/confirm/{hash}``;
+- [X] Desenvolver método ``GET`` da rota ``user/confirm/{hash}``;
 - [ ] Desenvolver método ``PUT`` da rota ``api/user``;
 - [ ] Marcar requisitos atendidos no documento de requisitos;
 

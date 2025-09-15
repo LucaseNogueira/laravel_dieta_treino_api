@@ -9,8 +9,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use PhpParser\Node\Expr\BinaryOp\BooleanOr;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class Usuario extends Authenticatable implements MustVerifyEmail
+class Usuario extends Authenticatable implements JWTSubject, MustVerifyEmail
 {
 
     use HasFactory, Notifiable;
@@ -33,6 +34,9 @@ class Usuario extends Authenticatable implements MustVerifyEmail
         'senha' => 'hashed',
         'status' => UsuarioStatus::class
     ];
+
+    protected $rememberTokenName = false;
+    protected $authPasswordName = 'senha';
 
     public function getAuthPassword()
     {
@@ -69,4 +73,29 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     {
         $this->attributes['senha'] = Hash::make($senha);
     }
+
+    public function getJWTIdentifier(){
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims(){
+        return [
+            'email' => $this->email
+        ];
+    }
+
+    // public function setRememberToken($value)
+    // {
+    //     // não faz nada
+    // }
+
+    // public function getRememberToken()
+    // {
+    //     return null;
+    // }
+
+    // public function getRememberTokenName()
+    // {
+    //     return null;
+    // }
 }

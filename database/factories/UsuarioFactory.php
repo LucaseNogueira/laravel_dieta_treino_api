@@ -23,7 +23,7 @@ class UsuarioFactory extends Factory
             'nome' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'email_verificado' => now(),
-            'senha' => static::$senha ??= Hash::make('senha'),
+            'senha' => Hash::make('senha'),
             'status' => UsuarioStatus::cases()[array_rand(UsuarioStatus::cases())]
         ];
     }

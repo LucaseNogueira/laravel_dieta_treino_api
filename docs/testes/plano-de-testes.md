@@ -28,6 +28,7 @@ Este plano de teste define a estratégia, os casos de teste, os recursos necess�
 # Casos de Testes
 
 - [Cadastro de Usuário (CT-U)](casos_teste/cadastro_de_usuario.md)
+- [Login do Usuário (CT-L)](casos_teste/login_usuario.md)
 
 # Critérios de Aceitação
 

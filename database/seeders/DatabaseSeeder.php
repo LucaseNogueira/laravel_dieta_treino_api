@@ -6,6 +6,7 @@ use App\Enums\UsuarioStatus;
 use App\Models\Usuario;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -24,6 +25,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'teste@pendente.com',
             'status' => UsuarioStatus::PENDENTE,
             'email_verificado' => null
+        ]);
+        Usuario::factory()->create([
+            'nome' => 'Teste',
+            'email' => 'teste@phpunit.com',
+            'status' => UsuarioStatus::ATIVO,
+            'senha' => Hash::make('senha')
         ]);
     }
 }
