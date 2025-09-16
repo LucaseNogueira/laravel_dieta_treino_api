@@ -11,26 +11,6 @@ use App\Models\Usuario;
 
 class LoginUsuarioApiTest extends TestCase
 {
-    // public static function setUpBeforeClass(): void
-    // {
-    //     parent::setUpBeforeClass();
-
-    //     Usuario::factory()->create([
-    //         'nome' => 'Teste',
-    //         'email' => 'teste@phpunit.com',
-    //         'senha' => 'senha',
-    //         'status' => 'Ativo',
-    //     ]);
-    // }
-
-    // public static function tearDownAfterClass():void
-    // {
-    //     Usuario::where([
-    //         ['nome', '=', 'Teste'],
-    //         ['email', '=', 'teste@phpunit.com'],
-    //         ['status', '=', 'Ativo'],
-    //     ])->delete();
-    // }
 
     public function test_case_login_usuario(): void
     {

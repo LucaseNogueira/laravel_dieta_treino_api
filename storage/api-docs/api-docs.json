@@ -1,7 +1,7 @@
 {
     "openapi": "3.0.0",
     "info": {
-        "title": "Minha APP",
+        "title": "Laravel Dieta e Treino API",
         "description": "API de dieta e treino desenvolvida em Laravel 12",
         "version": "0.0.1"
     },
@@ -12,6 +12,99 @@
         }
     ],
     "paths": {
+        "api/auth": {
+            "post": {
+                "tags": [
+                    "Autenticação"
+                ],
+                "summary": "Autenticação do usuário, retornando seu token JWT",
+                "operationId": "f58a21374d773f34d10a39a340945b5d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "email",
+                                    "senha"
+                                ],
+                                "properties": {
+                                    "email": {
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "teste@phpunit.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "senha"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Login bem-sucedido, retorna token JWT",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "token": {
+                                            "type": "string"
+                                        },
+                                        "type": {
+                                            "type": "string",
+                                            "example": "Bearer"
+                                        },
+                                        "expires_in": {
+                                            "type": "integer",
+                                            "example": "86400"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Credenciais inválidas"
+                    },
+                    "422": {
+                        "description": "Erro de validação",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O e-mail não foi informado ou está inválido"
+                                                    }
+                                                },
+                                                "senha": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "Senha não foi informada ou incorreta (mínimo de 5 caracteres)"
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
         "/": {
             "get": {
                 "tags": [
@@ -34,12 +127,64 @@
                     }
                 }
             }
+        },
+        "/user": {
+            "post": {
+                "tags": [
+                    "Usuário"
+                ],
+                "summary": "Cadastro do Usuário",
+                "description": "Cadastro completo de um usuário no sistema.",
+                "operationId": "66937a4d1c935896e5ad022fd9bd945d",
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nome",
+                                    "email",
+                                    "senha"
+                                ],
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Teste OpenAPI"
+                                    },
+                                    "email": {
+                                        "type": "string",
+                                        "example": "teste_openapi@email.com"
+                                    },
+                                    "senha": {
+                                        "type": "string",
+                                        "example": "senha_openapi"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Sucesso"
+                    }
+                }
+            }
         }
     },
     "tags": [
         {
+            "name": "Autenticação",
+            "description": "Autenticação"
+        },
+        {
             "name": "Root",
             "description": "Root"
+        },
+        {
+            "name": "Usuário",
+            "description": "Usuário"
         }
     ]
 }
