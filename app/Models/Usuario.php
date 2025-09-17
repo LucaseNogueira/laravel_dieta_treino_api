@@ -83,19 +83,4 @@ class Usuario extends Authenticatable implements JWTSubject, MustVerifyEmail
             'email' => $this->email
         ];
     }
-
-    // public function setRememberToken($value)
-    // {
-    //     // não faz nada
-    // }
-
-    // public function getRememberToken()
-    // {
-    //     return null;
-    // }
-
-    // public function getRememberTokenName()
-    // {
-    //     return null;
-    // }
 }

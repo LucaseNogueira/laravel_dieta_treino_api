@@ -12,7 +12,7 @@ Uma API de dieta e treino que nada convencional. Nela você informar os alimento
 - [Iniciando projeto com Docker](docs/iniciando-projeto-com-docker.md)
 - [Primeiros passos Git e Github](docs/primeiros-passos-git-github.md)
 - [Primeiros passos do PHPUnit no Laravel e Docker](docs/primeiros-passos-phpunit.md)
-- [Features (documentação)]()
+- [Features (documentação)](docs/sprints/)
 - [Diagramas e Fluxogramas](docs/diagramas)
 
 # Paradigmas
@@ -62,6 +62,8 @@ Aqui temos um breve resumo de todas as rotas desta API. Vale lembrar que esta AP
 | ``api/auth`` | **POST** | Autenticação/Login do usuário |
 | ``user/confirm/{hash}`` | **GET** | Confirmar o cadastro do usuário |
 
+***OBS: futuramente devemos criar rotas para atualizar a senha do usuário** 
+
 ### Autenticadas
 | Rota | Método | Descrição |
 | ---- | ------ | --------- |
@@ -74,6 +76,8 @@ Aqui temos um breve resumo de todas as rotas desta API. Vale lembrar que esta AP
 | ``api/plan/{id}`` | **UPDATE** | Atualizar plano alimentar |
 | ``api/plan/page/{?page_number}`` | **GET** | Capturar os planos alimentares por pagina (ordem decrecente)|
 | ``api/food/{plan_id}`` | **GET** | Capturar a composição nutricional dos alimentos presente no plano de dieta e treino |
+
+***OBS: futuramente devemos criar rotas para atualizar a senha do usuário** 
 
 # Jobs e Schedule
 

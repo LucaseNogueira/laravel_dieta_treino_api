@@ -13,7 +13,7 @@ Nenhum pré requisito aparente.
 - [ ] Desenvolver/atualizar Plano de Teste;
 - [ ] Desenvolver diagrama de sequência para todas as rotas desenvolvidas;
 - [X] Desenvolver método ``POST`` da rota ``api/user``;
-- [ ] Desenvolver método ``POST`` da rota ``api/auth``;
+- [X] Desenvolver método ``POST`` da rota ``api/auth``;
 - [X] Desenvolver método ``GET`` da rota ``user/confirm/{hash}``;
 - [ ] Desenvolver método ``PUT`` da rota ``api/user``;
 - [ ] Marcar requisitos atendidos no documento de requisitos;

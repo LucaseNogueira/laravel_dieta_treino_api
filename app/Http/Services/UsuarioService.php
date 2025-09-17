@@ -18,11 +18,13 @@ class UsuarioService{
         return $usuario;
     }
 
-    public function confirmarUsuario(string $hashConfirmacao){
+    public function confirmarUsuario(string $hashConfirmacao):bool
+    {
         $usuarios = Usuario::where('status', UsuarioStatus::PENDENTE)->get();
 
         foreach($usuarios as $user){
             if(ConfirmarEmailHelper::checkHash($hashConfirmacao, $user)){
+                $user->email_verificado = now();
                 $user->status = UsuarioStatus::ATIVO;
                 $user->save();
                 return true;
@@ -30,5 +32,15 @@ class UsuarioService{
         }
 
         return false;
+    }
+
+    public function atualizarUsuario(array $data):Usuario
+    {
+        $usuario = Usuario::findOrFail($data['id']);
+        $usuario->nome = $data['nome'];
+
+        $usuario->save();
+
+        return $usuario;
     }
 }

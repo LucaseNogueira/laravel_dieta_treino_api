@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Events\AfterCadastroUsuario;
 use App\Http\Requests\Usuario\StoreUsuarioRequest;
+use App\Http\Requests\Usuario\UpdateUsuarioRequest;
 use App\Http\Services\UsuarioService;
 use Illuminate\Http\Request;
 
@@ -78,9 +79,14 @@ class UsuarioController extends Controller
         //
     }
 
-    public function update(Request $request, string $id)
+    public function update(UpdateUsuarioRequest $request, string $id)
     {
-        //
+        $data = $request->only(['nome']);
+        $data['id'] = (int) $id;
+
+        $usuario = $this->getInstanceService()->atualizarUsuario($data);
+
+        return response()->json($usuario, 200);
     }
 
     public function destroy(string $id)

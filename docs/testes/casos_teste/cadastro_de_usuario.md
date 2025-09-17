@@ -36,4 +36,16 @@
 | ID | Casos de Teste | Pré-Condição | Passos | Resultado Esperado |
 | -- | -------------- | ------------ | ------ | ------------------ |
 | **CT-U008** | Usuário confirmou o cadastro via e-mail | Usuário com cadastro Pendente e e-mail de confirmação enviado | O cliente acessar a mensagem de e-mail enviada e clicar no link de confirmação | Resposta **200**. Uma página HTML informando que foi confirmado o cadastro do usuário e que seu acesso foi liberado |
-| **CT-U009** | Hash invalida na rota de confirmação do usuário | Existir um link de confirmação invalido | O cliente mal intencionado cola no link de confirmação uma hash invalida | Resposta **401**. Um HTML informando algo como "credenciais invalidas" |
+| **CT-U009** | Hash inválida na rota de confirmação do usuário | Existir um link de confirmação invalido | O cliente mal intencionado cola no link de confirmação uma hash inválida | Resposta **401**. Um HTML informando algo como "credenciais invalidas" |
+
+# Casos de teste atualizar usuário
+
+**Método:** ``PUT``
+
+**Rota:** ``api/user/{?id}``
+
+| ID | Casos de Teste | Pré-Condição | Passos | Resultado Esperado |
+| -- | -------------- | ------------ | ------ | ------------------ |
+| **CT-U0010** | Usuário atualizado | Usuário logado | Preencher os campos que deseja atualizar | Reposta **200** retornando o usuário atualizado |
+| **CT-U0011** | Nome inválido | Usuário logado | Informar um nome com mais de 60 caracteres | Resposta **422** com a mensagem *"Campo 'Nome' possui valor invalido com mais de 60 caracteres"* |
+| **CT-U0012** | Request vazia | Usuário logado | Cliente não preencher os campos | Resposta **422** com a mensagem *"Não foi informado dados válidos para a atualização do usuário."* |
