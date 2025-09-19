@@ -5,12 +5,10 @@ namespace App\Mail;
 use App\Helpers\ConfirmarEmailHelper;
 use App\Models\Usuario;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Hash;
 
 class ConfirmarCadastroMail extends Mailable
 {
@@ -18,7 +16,7 @@ class ConfirmarCadastroMail extends Mailable
 
     public Usuario $usuario;
 
-    private string $rotaConfirmacao;
+    private string $pathConfirmacao;
     private string $hashConfirmacao;
 
     /**
@@ -28,7 +26,7 @@ class ConfirmarCadastroMail extends Mailable
     {
         $this->usuario = $usuario;
         $this->hashConfirmacao = ConfirmarEmailHelper::hash($this->usuario);
-        $this->rotaConfirmacao = "/user/confirm/{$this->hashConfirmacao}";
+        $this->pathConfirmacao = "/user/confirm/{$this->hashConfirmacao}";
     }
 
     /**
@@ -46,8 +44,14 @@ class ConfirmarCadastroMail extends Mailable
      */
     public function content(): Content
     {
+        $url = url($this->pathConfirmacao);
+
         return new Content(
             markdown: 'emails.confirmar_cadastro',
+            with: [
+                'usuario' => $this->usuario,
+                'urlConfirmacao' => $url
+            ],
         );
     }
 
@@ -58,10 +62,7 @@ class ConfirmarCadastroMail extends Mailable
      */
     public function attachments(): array
     {
-        $url = url($this->rotaConfirmacao);
 
-        return [
-            'urlConfirmacao' => $url
-        ];
+        return [];
     }
 }

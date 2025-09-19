@@ -1,12 +1,12 @@
-<x-mail::message>
+@component('mail::message')
 # Olá {{ $usuario->nome }}
 
-Falta pouco para concretizar o seu cadastro no nosso sistema. Clique no botão abaixo para confirmar o seu cadastro!
+Falta pouco para concretizar o seu cadastro no nosso sistema. Clique aqui para confirmar o seu cadastro!
 
-<x-mail::button :url={{ $urlConfirmacao }}>
+@component('mail::button', ['url' => $urlConfirmacao])
 Confirme sua conta
-</x-mail::button>
+@endcomponent
 
-Thanks,<br>
+Obrigado,<br>
 {{ config('app.name') }}
-</x-mail::message>
+@endcomponent

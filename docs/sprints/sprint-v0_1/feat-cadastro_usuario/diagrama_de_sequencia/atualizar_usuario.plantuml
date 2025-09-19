@@ -1,0 +1,25 @@
+@startuml Atualizar usuario
+actor Cliente
+
+Cliente -> api.php : PUT /api/user
+api.php -> Middleware_auth_api : validar token
+Middleware_auth_api --> api.php : Token válido ou erro
+
+alt Token válido
+    api.php -> UpdateUsuarioRequest : Validar dados
+    UpdateUsuarioRequest --> api.php : Dados válidos ou error
+
+    alt Dados válidos
+        api.php -> UsuarioController : update(request)
+        UsuarioController -> UsuarioService : atualizarUsuario(dados)
+        UsuarioService -> Usuario : save()
+        Usuario --> UsuarioService : Usuario atualizado
+        UsuarioService --> UsuarioController : Usuario atualizado
+        UsuarioController --> Cliente : Usuario atualizado + status 200
+    else Dados inválidos
+        UpdateUsuarioRequest --> Cliente : 422 Unprocessable Entity + Erros
+    end
+else Token inválido
+    api.php --> Cliente : Erro 401
+end
+@enduml

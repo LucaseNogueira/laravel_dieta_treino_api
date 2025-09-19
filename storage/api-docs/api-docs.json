@@ -128,14 +128,14 @@
                 }
             }
         },
-        "/user": {
+        "api/user": {
             "post": {
                 "tags": [
                     "Usuário"
                 ],
                 "summary": "Cadastro do Usuário",
                 "description": "Cadastro completo de um usuário no sistema.",
-                "operationId": "66937a4d1c935896e5ad022fd9bd945d",
+                "operationId": "04156b356a4bc86d53ff9b65d8d8d2bb",
                 "requestBody": {
                     "required": true,
                     "content": {
@@ -166,8 +166,192 @@
                     }
                 },
                 "responses": {
+                    "201": {
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Teste OpenAPI"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email",
+                                            "example": "teste_openapi@email.com"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Pendente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "email": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "Credenciais inválidas: o e-mail informado já possui cadastro no sistema."
+                                                    }
+                                                },
+                                                "nome": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo 'nome' é obrigatório."
+                                                    }
+                                                },
+                                                "senha": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "O campo 'senha' é obrigatório."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/user/{id}": {
+            "put": {
+                "tags": [
+                    "Usuário"
+                ],
+                "summary": "Atualizar usuário logado",
+                "operationId": "e18206ec4fc17a4c90e24b4e64cbe6ce",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id do usuário logado",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "requestBody": {
+                    "required": true,
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "required": [
+                                    "nome"
+                                ],
+                                "properties": {
+                                    "nome": {
+                                        "type": "string",
+                                        "example": "Teste OpenAPI"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
                     "200": {
-                        "description": "Sucesso"
+                        "description": "Sucesso",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "id": {
+                                            "type": "integer"
+                                        },
+                                        "nome": {
+                                            "type": "string",
+                                            "example": "Teste OpenAPI"
+                                        },
+                                        "email": {
+                                            "type": "string",
+                                            "format": "email",
+                                            "example": "teste_openapi@email.com"
+                                        },
+                                        "status": {
+                                            "type": "string",
+                                            "example": "Pendente"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "422": {
+                        "description": "Erro",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "errors": {
+                                            "properties": {
+                                                "nome": {
+                                                    "type": "array",
+                                                    "items": {
+                                                        "type": "string",
+                                                        "example": "Campo 'Nome' possui valor invalido com mais de 60 caracteres."
+                                                    }
+                                                }
+                                            },
+                                            "type": "object"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/user/confirm/{hash}": {
+            "get": {
+                "tags": [
+                    "Usuário"
+                ],
+                "summary": "Confirmar cadastro do usuário",
+                "operationId": "c44d90943497647c65ecd9a2174682e2",
+                "parameters": [
+                    {
+                        "name": "hash",
+                        "in": "path",
+                        "description": "Hash enviado por e-mail para confirmação do usuário",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Confirmado o cadastro do seu usuário. Agora você pode acessar a API!"
+                    },
+                    "404": {
+                        "description": "Credenciais inválidas"
                     }
                 }
             }

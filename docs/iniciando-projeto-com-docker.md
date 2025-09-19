@@ -66,3 +66,8 @@ http://localhost:8001/api/docs
 ```
 
 É possivel adicionar o banco de dados criado numa aplicação de administração de banco de dados (ex: DBeaver ou PGAdmin). Basta verificar o ``environment`` e ``port`` definidos no serviço ``db`` do ``docker-compose.yml``. Adicione os valores presentes nos parametros na ferramenta de sua escolha e lembre-se que o ``host = localhost`` e ``port = 5433``.
+
+É possível acessar o terminal do seu projeto no docker por meio da seguinte linha de comando:
+```
+docker exec -it laravel_dieta_treino_api bash
+```

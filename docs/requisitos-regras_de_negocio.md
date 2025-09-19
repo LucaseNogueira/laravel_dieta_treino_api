@@ -7,8 +7,8 @@ Eu não me preocupei em ordenar os requisitos e regras de negócio, mas garanto 
 # Requisitos Funcionais
 
 - [ ] **RF001 - Manter usuários:** O sistema deve manter usuários.
-- [ ] **RF002 - Geração de Token de Autenticação:** O sistema deve gerar um token de autenticação para cada usuário logado.
-- [ ] **RF003 - Login do Usuário:** O sistema deve permitir o login do usuário no sistema.
+- [X] **RF002 - Geração de Token de Autenticação:** O sistema deve gerar um token de autenticação para cada usuário logado.
+- [X] **RF003 - Login do Usuário:** O sistema deve permitir o login do usuário no sistema.
 - [ ] **RF004 - Manter Alimentos:** O sistema deve manter alimentos.
 - [ ] **RF005 - Manter de Plano Dieta e Treino:** O sistema deve manter o plano de dieta e treino recebido pelo cliente.
 - [ ] **RF006 - Cálculo da Composição Nutricional dos Alimentos Não Consumidos:** O sistema deve desenvolver a composição nutricional dos alimentos não consumidos de um plano de dieta e treino.
@@ -18,21 +18,21 @@ Eu não me preocupei em ordenar os requisitos e regras de negócio, mas garanto 
 
 - [ ] **RNF001 - Framework de Desenvolvimento:** O sistema deve ser desenvolvido utilizando o framework PHP Laravel em sua versão 12.25.0.
 - [ ] **RNF002 - Banco de Dados da Aplicação:** Foi definido o PostgreSQL 16 como banco de dados da aplicação.
-- [ ] **RNF003 - Criptografia das Senhas:** Todas as senhas devem ser armazenadas utilizando bcrypt ou algoritmo de hashing equivalente, nunca em texto plano.
+- [x] **RNF003 - Criptografia das Senhas:** Todas as senhas devem ser armazenadas utilizando bcrypt ou algoritmo de hashing equivalente, nunca em texto plano.
 - [ ] **RNF004 - Persistência da TACO:** Os dados da TACO, fornecidos originalmente em arquivo CSV, devem ser importados e armazenados no banco de dados PostgreSQL da aplicação.
 - [ ] **RNF005 - Agendamento de Exclusão de Usuários:** A exclusão dos usuários com status "Exclusão Pendente" deve ser feita a partir de um scheduler executado às 01:00 da manhã.
 
 # Regras de Negócio
 
-- [ ] **RN001 - Dados do Usuário:** Cada usuário deve possuir id único e obrigatório, nome obrigatório, senha obrigatória e protegida, e-mail obrigatório e status obrigatório.
-- [ ] **RN002 - Tipo de Token:** O token de autenticação do usuário deve ser do tipo JWT (JSON Web Token).
+- [X] **RN001 - Dados do Usuário:** Cada usuário deve possuir id único e obrigatório, nome obrigatório, senha obrigatória e protegida, e-mail obrigatório e status obrigatório.
+- [X] **RN002 - Tipo de Token:** O token de autenticação do usuário deve ser do tipo JWT (JSON Web Token).
 - [ ] **RN003 - Validade do Token:** O token de autenticação terá validade de 1 dia, 24 horas, a partir da data/hora de emissão.
 - [ ] **RN004 - Expiração do token:** Caso o token expire, usuário autenticado por mais de 1 dia, o sistema deve exigir um novo login para gerar um novo token de autenticação.
-- [ ] **RN005 - Geração do token:** Um novo token é gerado quando o usuário loga no sistema.
-- [ ] **RN006 - Acesso do usuário:** O usuário terá acesso ao sistema caso realizado o login e caso o status de sua conta seja igual a "ativo", assim ele receberá um token de autenticação válido para as ações do usuário no sistema.
-- [ ] **RN007 - Cadastro do usuário:** O usuário deve se cadastrar no sistema com seus dados validados.
-- [ ] **RN008 - Conta pendente após o cadastro:** Após o cadastro de sua conta, o status da conta do usuário fica pendente até o mesmo confirmar o seu cadastro pelo email de confirmação.
-- [ ] **RN009 - Email de confirmação:** Após o cadastro no sistema o usuário irá receber um email de confirmação de acesso ao sistema, para assim ativar a sua conta.
+- [X] **RN005 - Geração do token:** Um novo token é gerado quando o usuário loga no sistema.
+- [X] **RN006 - Acesso do usuário:** O usuário terá acesso ao sistema caso realizado o login e caso o status de sua conta seja igual a "ativo", assim ele receberá um token de autenticação válido para as ações do usuário no sistema.
+- [X] **RN007 - Cadastro do usuário:** O usuário deve se cadastrar no sistema com seus dados validados.
+- [X] **RN008 - Conta pendente após o cadastro:** Após o cadastro de sua conta, o status da conta do usuário fica pendente até o mesmo confirmar o seu cadastro pelo email de confirmação.
+- [X] **RN009 - Email de confirmação:** Após o cadastro no sistema o usuário irá receber um email de confirmação de acesso ao sistema, para assim ativar a sua conta.
 - [ ] **RN010 - Manutenção dos dados do usuário:** Apenas após logado no sistema o usuário pode atualizar o seu nome e senha.
 - [ ] **RN011 - Base de Alimentos:** Os alimentos mantidos no sistema têm como origem a tabela TACO de alimentos consumidos pela população brasileira.
 - [ ] **RN012 - Dados do Plano de Dieta e Treino:** Os seguintes dados contemplam o plano de dieta e treino do usuário: identificador único do plano; Nome obrigatório do plano de dieta e treino; uma lista obrigatória de alimentos não consumidos; uma lista de treinos diários; peso atual do usuário em quilograma, dado obrigatório; altura atual do usuário em metros, dado obrigatório; período de vigência do plano, dado obrigatório; uma tabela obrigatória de metas do plano; status do plano;

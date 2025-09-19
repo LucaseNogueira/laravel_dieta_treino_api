@@ -1,7 +1,7 @@
 @startuml Confirmar Cadastro Usuario
 actor Cliente
 
-Cliente -> web.php : POST /user/confirm/hash
+Cliente -> web.php : GET /user/confirm/hash
 web.php -> UsuarioController : confirm(request)
 UsuarioController -> UsuarioService : confirmarUsuario(dados)
 UsuarioService -> HashEmailHelper : decode(hash)
