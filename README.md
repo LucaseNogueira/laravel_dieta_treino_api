@@ -11,8 +11,23 @@ Uma API de dieta e treino que nada convencional. Nela você informar os alimento
 - [Iniciando o projeto (Legado)](docs/iniciando-o-projeto_legado.md)
 - [Iniciando projeto com Docker](docs/iniciando-projeto-com-docker.md)
 - [Primeiros passos Git e Github](docs/primeiros-passos-git-github.md)
-- [Features (documentação)]()
+- [Primeiros passos do PHPUnit no Laravel e Docker](docs/primeiros-passos-phpunit.md)
+- [Features (documentação)](docs/sprints/)
 - [Diagramas e Fluxogramas](docs/diagramas)
+
+# Paradigmas
+
+O Desenvolvimento guiado por testes, ou simplesmente **TDD**, é a técnica de desenvolvimento de software escolhida no desenvolvimento desta API. Desta forma, além do desenvolvimento do código fonte, o desenvolvimento e manutenção de testes e sua documentação também foi tomado como prioridade de cada sprint.
+
+Além disso o paradigma de **Orientação a Objeto** foi respeitado no desenvolvimento da aplicação, procurando sempre manter um **código limpo**, o mais próximo possível dos principios **SOLID**.
+
+# Dependencias e demais ferramentas
+
+Este projeto foi desenvolvido em **Laravel 12** e **PostgreSQL 16**. É possível acompanhar todas as dependências deste projeto nos arquivos ``composer.json`` e ``package.json``.
+
+As ferramentas utilizadas para modelagem **UML** foram [draw.io](https://app.diagrams.net/) e [PlantUML](https://www.plantuml.com/).
+
+**PHPUnit** e **Postman** foram a ferramenta e o frameworks escolhidos para o desenvolvimento e aplicação dos testes.
 
 # Workflow, Sprint, Features e Commits
 
@@ -47,6 +62,8 @@ Aqui temos um breve resumo de todas as rotas desta API. Vale lembrar que esta AP
 | ``api/auth`` | **POST** | Autenticação/Login do usuário |
 | ``user/confirm/{hash}`` | **GET** | Confirmar o cadastro do usuário |
 
+***OBS: futuramente devemos criar rotas para atualizar a senha do usuário** 
+
 ### Autenticadas
 | Rota | Método | Descrição |
 | ---- | ------ | --------- |
@@ -59,6 +76,8 @@ Aqui temos um breve resumo de todas as rotas desta API. Vale lembrar que esta AP
 | ``api/plan/{id}`` | **UPDATE** | Atualizar plano alimentar |
 | ``api/plan/page/{?page_number}`` | **GET** | Capturar os planos alimentares por pagina (ordem decrecente)|
 | ``api/food/{plan_id}`` | **GET** | Capturar a composição nutricional dos alimentos presente no plano de dieta e treino |
+
+***OBS: futuramente devemos criar rotas para atualizar a senha do usuário** 
 
 # Jobs e Schedule
 

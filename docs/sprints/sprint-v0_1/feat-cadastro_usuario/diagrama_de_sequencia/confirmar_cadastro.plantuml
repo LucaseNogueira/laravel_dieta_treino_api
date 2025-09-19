@@ -1,0 +1,20 @@
+@startuml Confirmar Cadastro Usuario
+actor Cliente
+
+Cliente -> web.php : GET /user/confirm/hash
+web.php -> UsuarioController : confirm(request)
+UsuarioController -> UsuarioService : confirmarUsuario(dados)
+UsuarioService -> HashEmailHelper : decode(hash)
+HashEmailHelper --> UsuarioService : Hash valido ou erro 409
+
+alt Hash válido
+    UsuarioService -> Usuario : Verifica email e Atualiza status do usuário()
+    Usuario -> PostgreSQL : UPDATE usuarios
+    PostgreSQL --> Usuario : SUCESSO
+    Usuario --> UsuarioService : Usuario atualizado
+    UsuarioService --> UsuarioController : Usuario atualizado
+    UsuarioController --> Cliente : Usuario Atualizado
+else Hash inválido
+    HashEmailHelper -> Cliente : Erro 409
+end
+@enduml

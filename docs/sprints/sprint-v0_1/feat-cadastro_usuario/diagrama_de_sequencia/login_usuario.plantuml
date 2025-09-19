@@ -1,0 +1,23 @@
+@startuml Login do Usuario
+actor Cliente
+
+Cliente -> api.php : POST /api/auth
+api.php -> LoginAuthRequest : Validar dados
+LoginAuthRequest --> api.php : Dados validados ou erro 422
+
+alt Dados validados
+    api.php -> AuthController : login(request)
+    AuthController -> AuthService : autenticarUsuario(data)
+    AuthService -> Auth : attempt($data)
+    Auth --> AuthService : Usuario autenticado ou credenciais invalidas
+    alt Usuario autenticado
+        AuthService --> AuthController : Array com token JWT
+        AuthController --> Cliente : 200 + array com token JWT
+    else
+        AuthService --> Cliente : Credenciais inválidas
+    end
+else Dados inválidos
+    LoginAuthRequest --> Cliente : 422 Unprocessable Entity + Erros
+end
+
+@enduml

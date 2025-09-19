@@ -168,15 +168,29 @@ Gere a chave utilizando o ``php artisan``.
 php artisan jwt:secret
 ```
 
-Agora, acesse o arquivo ``config/auth.php`` e altere, ou adicione, o driver padrão da api para ``jwt``.
+Agora, acesse o arquivo ``config/auth.php`` e altere, ou adicione, o driver padrão da api para ``jwt`` e o provider para ``usuarios``.
 ```php
 'guards' => [
     ...
     'api' => [
         'driver' => 'jwt',
-        'provider' => 'users',
+        'provider' => 'usuarios',
     ],
 ]
 ```
+
+No mesmo arquivo, identifique o array ``providers`` e altere ``users`` para ``usuarios``, afim de deixar o provider de usuários com o mesmo nome da classe e tabela de Usuario(s). O array ``providers`` deve ficar semelhante ao exemplo a seguir:
+
+```php
+'providers' => [
+    'usuarios' => [
+        'driver' => 'eloquent',
+        'model' => env('AUTH_MODEL', App\Models\Usuario::class),
+    ],
+    ...
+],
+```
+
+Agora acesse o arquivo ``config/jwt.php``. Segundo a nossa regra, o **token expira em 24hrs**, então defina ``ttl => env('JWT_TTL', 1440)``, onde **1440min é igual a 24hrs**.
 
 O teste do JWT foi realizado durante a construção das rotas de ``auth`` e ``user``.
