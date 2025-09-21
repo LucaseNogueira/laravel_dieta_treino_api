@@ -49,3 +49,23 @@
 | **CT-U0010** | Usuário atualizado | Usuário logado | Preencher os campos que deseja atualizar | Reposta **200** retornando o usuário atualizado |
 | **CT-U0011** | Nome inválido | Usuário logado | Informar um nome com mais de 60 caracteres | Resposta **422** com a mensagem *"Campo 'Nome' possui valor invalido com mais de 60 caracteres"* |
 | **CT-U0012** | Request vazia | Usuário logado | Cliente não preencher os campos | Resposta **422** com a mensagem *"Não foi informado dados válidos para a atualização do usuário."* |
+
+# Casos de teste atualizar senha
+
+**Método:** ``PATCH``
+
+**Rota:** ``api/user/atualizar-senha/{id}
+
+| ID | Casos de Teste | Pré-Condição | Passos | Resultado Esperado |
+| -- | -------------- | ------------ | ------ | ------------------ |
+
+# Casos de teste esqueceu a senha
+
+**Método:** ``PATCH``
+
+**Rota:** ``api/user/esqueceu-senha/{hash}
+
+| ID | Casos de Teste | Pré-Condição | Passos | Resultado Esperado |
+| -- | -------------- | ------------ | ------ | ------------------ |
+
+# Casos de teste esqueceu senha 
