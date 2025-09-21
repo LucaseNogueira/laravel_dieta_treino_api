@@ -1,0 +1,17 @@
+@startuml
+actor Cliente
+
+Cliente -> api.php : GET api/user/{id}
+api.php -> DominioUsuarioRequest : Validar dados
+DominioUsuarioRequest --> api.php : Dados validos ou erro 422
+
+alt Dados válidos
+    api.php -> UsuarioController : show(id)
+    UsuarioController -> UsuarioService : buscarUsuario(id)
+    UsuarioService -> Usuario : get()
+    UsuarioService -> UsuarioController : Usuario
+    UsuarioController --> Cliente : Resposta status 200 + Usuário
+else Dados inválidos
+    DominioUsuarioRequest --> Cliente : 422 Unprocessable Entity + Erros
+end
+@enduml

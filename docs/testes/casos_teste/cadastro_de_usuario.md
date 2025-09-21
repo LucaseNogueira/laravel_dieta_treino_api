@@ -49,3 +49,14 @@
 | **CT-U0010** | Usuário atualizado | Usuário logado | Preencher os campos que deseja atualizar | Reposta **200** retornando o usuário atualizado |
 | **CT-U0011** | Nome inválido | Usuário logado | Informar um nome com mais de 60 caracteres | Resposta **422** com a mensagem *"Campo 'Nome' possui valor invalido com mais de 60 caracteres"* |
 | **CT-U0012** | Request vazia | Usuário logado | Cliente não preencher os campos | Resposta **422** com a mensagem *"Não foi informado dados válidos para a atualização do usuário."* |
+
+# Caso de Teste Visualizar Usuário
+
+**Método:** ``GET``
+
+**Rota:** ``api/user/{id}``
+
+| ID | Casos de Teste | Pré-Condição | Passos | Resultado Esperado |
+| -- | -------------- | ------------ | ------ | ------------------ |
+| **CT-U013** | Visualizar usuário | Usuário logado | Informar id do usuário logado e enviar | Resposta **200** retornando os dados do usuário |
+| **CT-U014** | Informar id inválido | Usuário logado | Informar id inválido ou diferente do id do usuário logado | Resposta **401** |
