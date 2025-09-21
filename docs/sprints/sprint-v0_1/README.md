@@ -36,6 +36,7 @@ Desenvolver features capazes de manter usuários e permitir a manutenção dos m
 - [X] Desenvolver método ``POST`` da rota ``api/auth``;
 - [X] Desenvolver método ``GET`` da rota ``user/confirm/{hash}``;
 - [X] Desenvolver método ``PATCH`` da rota ``api/user``;
+- [ ] Desenvolver método ``[DELETE]`` da rota ``api/user``;
 - [ ] Desenvolver método ``GET`` da rota ``api/user/{id}``;
 - [ ] Desenvolver método ``PATCH`` da rota ``api/user/atualizar-senha/{id}``;
 - [ ] Desenvolver método ``PATCH`` da rota ``api/user/esqueceu-senha/{hash}``;
@@ -55,6 +56,7 @@ Desenvolver features capazes de manter usuários e permitir a manutenção dos m
 ### Requisitos Não Funcionais
 
 - [X] **RNF003 - Criptografia das Senhas:** Todas as senhas devem ser armazenadas utilizando bcrypt ou algoritmo de hashing equivalente, nunca em texto plano.
+- [ ] **RNF005 - Agendamento de Exclusão de Usuários:** A exclusão dos usuários com status "Exclusão Pendente" deve ser feita a partir de um scheduler executado às 01:00 da manhã.
 
 ### Regras de Negócio
 
@@ -68,6 +70,7 @@ Desenvolver features capazes de manter usuários e permitir a manutenção dos m
 - [X] **RN008 - Conta pendente após o cadastro:** Após o cadastro de sua conta, o status da conta do usuário fica pendente até o mesmo confirmar o seu cadastro pelo email de confirmação.
 - [X] **RN009 - Email de confirmação:** Após o cadastro no sistema o usuário irá receber um email de confirmação de acesso ao sistema, para assim ativar a sua conta.
 - [ ] **RN010 - Manutenção dos dados do usuário:** Apenas após logado no sistema o usuário pode atualizar o seu nome e senha.
+- [ ] **RN018 - Excluir Conta do Usuário:** Apenas o usuário logado tem permissão de alterar o status da sua conta para "Exclusão Pendente", desta forma a exclusão de sua conta será agendada.
 - [ ] **RN022 - Alteração da senha do usuário:** Somente o usuário autenticado e ativo no sistema pode alterar a sua senha.
 - [ ] **RN023 - Dados da alteração de senha:** O usuário autenticado e ativo no sistema deve informar a sua senha atual, a sua nova senha e informar novamente a sua nova senha, totalizando três campos obrigatórios.
 - [ ] **RN024 - Esqueceu sua senha:** Caso o usuário esqueça a sua senha, o sistema deve receber o e-mail do usuário para enviar uma mensagem de e-mail para o e-mail recebido, contendo um hash que valida o pedido de atualização de senha e as instruções de como atualizar a senha.
