@@ -49,3 +49,20 @@
 | **CT-U0010** | Usuário atualizado | Usuário logado | Preencher os campos que deseja atualizar | Reposta **200** retornando o usuário atualizado |
 | **CT-U0011** | Nome inválido | Usuário logado | Informar um nome com mais de 60 caracteres | Resposta **422** com a mensagem *"Campo 'Nome' possui valor invalido com mais de 60 caracteres"* |
 | **CT-U0012** | Request vazia | Usuário logado | Cliente não preencher os campos | Resposta **422** com a mensagem *"Não foi informado dados válidos para a atualização do usuário."* |
+
+# Caso de Teste agendar exclusão do usuário
+
+**Método:** ``DELETE``
+
+**Rota:** ``api/user/{id}``
+
+| ID | Casos de Teste | Pré-Condição | Passos | Resultado Esperado |
+| -- | -------------- | ------------ | ------ | ------------------ |
+| **CT-U0013** | Usuário em exclusão pendente | Usuário logado | Informar o id do usuário e enviar | Resposta **202** retornando o **id** do usuário que será excluído |
+| **CT-U0014** | Informar id diferente do usuário autenticado | Usuário logado | Informar id diferente do usuário autenticado | Resposta **401** |
+
+# Caso de Teste agendamento exclusão do usuário
+
+**Periodo:** Todos os dias
+
+**Horário:**
