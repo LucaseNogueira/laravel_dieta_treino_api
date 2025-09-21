@@ -13,6 +13,8 @@ Eu não me preocupei em ordenar os requisitos e regras de negócio, mas garanto 
 - [ ] **RF005 - Manter de Plano Dieta e Treino:** O sistema deve manter o plano de dieta e treino recebido pelo cliente.
 - [ ] **RF006 - Cálculo da Composição Nutricional dos Alimentos Não Consumidos:** O sistema deve desenvolver a composição nutricional dos alimentos não consumidos de um plano de dieta e treino.
 - [ ] **RF007 - Consulta de Composição Nutricional:** O sistema deve permitir a consulta da composição nutricional dos alimentos não consumidos de um plano de dieta e treino.
+- [ ] **RF008 - Alterar a senha do usuário:** O sistema deve permitir a alteração da senha do usuário.
+- [ ] **RF009 - Esqueceu sua senha:** O sistema deve permitir que o usuário atualize a sua senha caso o mesmo à esqueça.
 
 # Requisitos Não Funcionais
 
@@ -45,3 +47,8 @@ Eu não me preocupei em ordenar os requisitos e regras de negócio, mas garanto 
 - [ ] **RN019 - Concluir Plano de Dieta e Treino:** O cliente pode concluir o seu plano de dieta e treino, esta ação deixará o plano exclusivo para visualização.
 - [ ] **RN020 - Contas com Status "Exclusão Pendente":** Todas as contas com status "Exclusão Pendentes" não têm acesso ao sistema.
 - [ ] **RN021 - Dados do Alimento:** Cada alimento contém um id único do sistema, seu id na tabela TACO, descrição, grupo alimentar, energia (kcal), proteína (g), lipídios totais (g), carboidratos (g), fibra alimentar (g), sódio (mg), açúcar total (g).
+- [ ] **RN022 - Alteração da senha do usuário:** Somente o usuário autenticado e ativo no sistema pode alterar a sua senha.
+- [ ] **RN023 - Dados da alteração de senha:** O usuário autenticado e ativo no sistema deve informar a sua senha atual, a sua nova senha e informar novamente a sua nova senha, totalizando três campos obrigatórios.
+- [ ] **RN024 - Esqueceu sua senha:** Caso o usuário esqueça a sua senha, o sistema deve receber o e-mail do usuário para enviar uma mensagem de e-mail para o e-mail recebido, contendo um hash que valida o pedido de atualização de senha e as instruções de como atualizar a senha.
+- [ ] **RN025 - Expiração do e-mail dê esqueceu sua senha:** O email enviado pelo sistema ao usuário tem expiração de 5 minutos, contabilizados a partir do envio do e-mail para o usuário.
+- [ ] **RN026 - Esqueceu sua senha - atualizar a senha:** O sistema deve receber a nova senha, a confirmação da nova senha e o hash enviado para poder atualizar a senha do usuário pelo método de esqueceu sua senha.

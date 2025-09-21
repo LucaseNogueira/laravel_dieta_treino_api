@@ -46,7 +46,10 @@ As features e os commits devem possuir o prefixo de uma das seguintes categorias
 - ``test:``: Teste da aplicação;
 - ``docs:``: Documentação;
 - ``chore:``: Adição de biblioteca ou desenvolvimento no núcleo da aplicação;
-- ``fix:`` Correção de bugs;
+- ``fix`` | ``bug:`` Correção de bugs*;
+- ``imp:`` implementação de melhorias.
+
+**O mais correto seria utilizar o prefixo ``fix``, porém eu acabei subindo uma correção de bug com prefixo ``bug``, então decidi adotar este prefixo para correções de bugs.*
 
 Exemplo de nomenclatura de uma feature ou commit: ``chore: Inicio do projeto``.
 
@@ -61,6 +64,8 @@ Aqui temos um breve resumo de todas as rotas desta API. Vale lembrar que esta AP
 | ``api/user`` | **POST** | Cadastrar usuário |
 | ``api/auth`` | **POST** | Autenticação/Login do usuário |
 | ``user/confirm/{hash}`` | **GET** | Confirmar o cadastro do usuário |
+| ``api/user/esqueceu-senha/{hash}`` | **PATCH** | Atualiza a senha do usuário caso esqueça a senha |
+|``api/user/esqueceu-senha`` | ``POST`` | Envia pedido para o cadastro de uma nova senha |
 
 ***OBS: futuramente devemos criar rotas para atualizar a senha do usuário** 
 
@@ -76,6 +81,8 @@ Aqui temos um breve resumo de todas as rotas desta API. Vale lembrar que esta AP
 | ``api/plan/{id}`` | **UPDATE** | Atualizar plano alimentar |
 | ``api/plan/page/{?page_number}`` | **GET** | Capturar os planos alimentares por pagina (ordem decrecente)|
 | ``api/food/{plan_id}`` | **GET** | Capturar a composição nutricional dos alimentos presente no plano de dieta e treino |
+| ``api/user/atualizar-senha/{hash}`` | ``PATCH`` | Atualiza a senha do usuário |
+| ``api/user/{id} | ``GET`` | Retorna os dados do usuário consultado |
 
 ***OBS: futuramente devemos criar rotas para atualizar a senha do usuário** 
 
