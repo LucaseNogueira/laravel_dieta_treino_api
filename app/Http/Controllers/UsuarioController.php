@@ -131,9 +131,31 @@ class UsuarioController extends Controller
         return response()->json($usuario, 200);
     }
 
-    public function destroy(string $id)
+    /**
+     * @OA\DELETE(
+     *  path="api/user",
+     *  summary="Inclui o usuário para a lista de exclusão",
+     *  tags={"Usuário"},
+     *  @OA\Response(
+     *      response=202,
+     *      description="Sucesso",
+     *      @OA\JsonContent(
+     *          @OA\Property(property="id", type="integer")
+     *      )
+     *  ),
+     * )
+     */
+    public function destroy()
     {
-        //
+        $id = auth('api')->user()->id;
+        $id = $this->getInstanceService()->agendarExclusaoUsuario($id);
+
+        $data = [
+            'message' => "Usuário em processo de exclusão",
+            'id' => $id
+        ];
+
+        return response()->json($data, 202);
     }
 
     /**

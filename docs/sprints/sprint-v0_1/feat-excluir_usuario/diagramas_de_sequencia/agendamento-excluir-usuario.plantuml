@@ -1,5 +1,19 @@
 @startuml
 actor API
 
+API -> console.php : Schedule 01:00 am
+console.php -> ExclusaoPendenteUsuario : handle()
+ExclusaoPendenteUsuario -> UsuarioService : Capturar IDs dos usuários com status "Exclusão Pendente"
+UsuarioService -> Usuario : where()
+UsuarioService --> ExclusaoPendenteUsuario : IDs dos Usuários
+ExclusaoPendenteUsuario -> UsuarioService : excluirUsuario(ids)
+UsuarioService -> DB : Inicia um bloco de transação
 
+activate DB
+DB -> Usuario : Deletar Usuarios
+Usuario --> DB : Resultado
+DB --> UsuarioService : commit()
+deactivate DB
+
+UsuarioService --> ExclusaoPendenteUsuario : bool
 @enduml

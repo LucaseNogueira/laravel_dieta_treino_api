@@ -54,15 +54,19 @@
 
 **Método:** ``DELETE``
 
-**Rota:** ``api/user/{id}``
+**Rota:** ``api/user``
 
 | ID | Casos de Teste | Pré-Condição | Passos | Resultado Esperado |
 | -- | -------------- | ------------ | ------ | ------------------ |
-| **CT-U0013** | Usuário em exclusão pendente | Usuário logado | Informar o id do usuário e enviar | Resposta **202** retornando o **id** do usuário que será excluído |
-| **CT-U0014** | Informar id diferente do usuário autenticado | Usuário logado | Informar id diferente do usuário autenticado | Resposta **401** |
+| **CT-U013** | Usuário em exclusão pendente | Usuário logado | Informar o id do usuário e enviar | Resposta **202** retornando o **id** do usuário que será excluído |
+
 
 # Caso de Teste agendamento exclusão do usuário
 
 **Periodo:** Todos os dias
 
-**Horário:**
+**Horário:** 01:00
+
+| ID | Casos de Teste | Pré-Condição | Passos | Resultado Esperado |
+| -- | -------------- | ------------ | ------ | ------------------ |
+| **CT-U014** | Executar agendamento de exclusão pendente | Usuário com status Exclusão Pendente | Forçar a execução do agendamento e verificar se o usuário foi excluido | Usuário(s) excluído(s) |

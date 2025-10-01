@@ -4,10 +4,18 @@ namespace App\Http\Services;
 
 use App\Enums\UsuarioStatus;
 use App\Helpers\ConfirmarEmailHelper;
+use App\Interfaces\InterfaceService;
 use App\Models\Usuario;
-use Illuminate\Support\Facades\Hash;
+use App\Utils\IntUtils;
+use Illuminate\Support\Facades\DB;
+use InvalidArgumentException;
 
-class UsuarioService{
+class UsuarioService implements InterfaceService{
+
+    public function model(): Usuario
+    {
+        return new Usuario();
+    }
 
     public function criarUsuario(array $dados):Usuario
     {
@@ -42,5 +50,31 @@ class UsuarioService{
         $usuario->save();
 
         return $usuario;
+    }
+
+    public function agendarExclusaoUsuario(int $id): int
+    {
+        $usuario = Usuario::findOrFail($id);
+
+        $usuario->status = UsuarioStatus::EXCLUSAO_PENDENTE;
+        $usuario->save();
+
+        return $id;
+    }
+
+    /**
+     * @param int[] $ids
+     */
+    public function excluirUsuario(array $ids):bool
+    {
+        if(!IntUtils::apenasInteiros($ids)){
+            throw new InvalidArgumentException("Todos os ids de usuário devem ser inteiros para acontecer a exclusão dos dados.");
+        }
+
+        DB::transaction(function () use($ids) {
+            Usuario::whereIn('id', $ids)->delete();
+        });
+
+        return true;
     }
 }

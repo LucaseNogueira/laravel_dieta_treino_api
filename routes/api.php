@@ -9,4 +9,5 @@ Route::post('/auth', [AuthController::class, 'login']);
 
 Route::middleware(['auth:api', 'cadastro_confirmado'])->group(function(){
     Route::put('user/{id}', [UsuarioController::class, 'update']);
+    Route::delete('/user', [UsuarioController::class, 'destroy']);
 });

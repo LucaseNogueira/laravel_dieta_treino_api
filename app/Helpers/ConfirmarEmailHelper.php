@@ -3,7 +3,6 @@
 namespace App\Helpers;
 
 use App\Models\Usuario;
-use Illuminate\Support\Facades\Hash;
 
 class ConfirmarEmailHelper{
 

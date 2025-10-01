@@ -2,17 +2,11 @@
 actor Cliente
 
 Cliente -> api.php : DELETE /api/user
-api.php -> DominioUsuarioRequest : validar dados
-DominioUsuarioRequest --> api.php : Dados válidos ou erro 422
+api.php -> UsuarioController : destroy(request)
+UsuarioController -> UsuarioService : agendarExclusaoUsuario(id)
+UsuarioService -> Usuario : save([status="Exclusao Pendente"])
+Usuario --> UsuarioService : Sucesso
+UsuarioService --> UsuarioController : id
+UsuarioController --> Cliente : Response status 202 + message:"Usuário em processo de exclusão" + id
 
-alt Dados válidos
-    api.php -> UsuarioController : destroy(request)
-    UsuarioController -> UsuarioService : agendarExclusaoUsuario(id)
-    UsuarioService -> Usuario : save([status="Exclusao Pendente"])
-    Usuario --> UsuarioService : Sucesso
-    UsuarioService --> UsuarioController : id
-    UsuarioController --> Cliente : Response status 202 + message:"Usuário em processo de exclusão" + id
-else Dados Inválidos
-    DominioUsuarioRequest --> Cliente : 422 Unprocessable Entity + Erros
-end
 @enduml
